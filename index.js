@@ -18,13 +18,14 @@ express()
     .set('view engine', 'ejs')
     .get('/', async(req, res) => {
         try{
-        const client = await pool.connect();
+            const client = await pool.connect();
 
-        client.release();
+            client.release();
+            res.send("Works");
         }
         catch (err) {
             console.error(err);
-            res.sent("Error " + err);
+            res.send("Error " + err);
         }
     })
     .listen(PORT, () => console.log(`Listening on ${ PORT }`));
