@@ -22,12 +22,17 @@ express()
             const client = await pool.connect();
 
             const tasks = await client.query(
-`SELECT * FROM tasks ORDER BY id ASC`);
+                `SELECT * FROM tasks ORDER BY id ASC`);
+            const stu = await client.query(
+                 `SELECT * FROM students ORDER BY id ASC`);
 
             const locals = {
-                'tasks': (tasks) ? tasks.rows : null
+                'tasks': (tasks) ? tasks.rows : null,
+                'stu': (stu) ? stu.rows : null
+                
             };
             res.render('pages/index', locals);
+        
 
             client.release();
             
@@ -55,10 +60,15 @@ express()
             const obs = await client.query(
                 `SELECT * FROM observations`
             );
+            
+            const stu = await client.query(
+                `SELECT * FROM students`
+            );
 
             const locals = {
                 'tables': (tables) ? tables.rows : null,
-                'obs': (obs) ? obs.rows : null
+                'obs': (obs) ? obs.rows : null,
+                'stu': (stu) ? stu.rows : null
             };
 
             

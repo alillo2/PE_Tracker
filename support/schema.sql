@@ -17,7 +17,7 @@ CREATE TABLE schools (
     address TEXT NOT NULL
 );
 
-UPDATE TABLE observations (
+CREATE TABLE observations (
     id SERIAL PRIMARY KEY,
     users_id INT NOT NULL,
     students_id INT NOT NULL,
@@ -31,6 +31,25 @@ CREATE TABLE tasks (
 );
 
 INSERT INTO tasks (name) VALUES
-    ('Planned Pres.');
+    ('Study');
+
+INSERT INTO tasks (name) VALUES
+    ('Final Project');
+
+INSERT INTO tasks (name) VALUES
+    ('Weekly Assign.');
+
+
+INSERT INTO students (name, school, expires) VALUES
+    ('Adam Lillo', '1', '11-08-2021');
+
+INSERT INTO students (name, school, expires) VALUES
+    ('Peter Pan', '1', '12-09-2022');
+
+INSERT INTO schools (name, address) VALUES
+    ('CVTC', '620 W Clairemont Ave, Eau Claire, WI 54701');
+
+
+
 
 ALTER TABLE observations RENAME COLUMN sutdents_id TO students_id;
