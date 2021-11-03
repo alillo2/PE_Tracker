@@ -8,7 +8,7 @@
 <body>
     <h1>PE Tracker</h1>
     <form>
-    <label for="Student">Student: </label>
+    <label for="student">Student: </label>
     <select name="Student" id="student">
     <% stu.forEach(function(r) {%>
         <option value="<%= r.id %>"><%= r.name %></option>
@@ -16,13 +16,13 @@
     </select>
     
         <b>Number of hours worked</b>
-        <input id="taskTimeHours" title="" type="text" min="1" max = "24" onchange = "value = this.value">
+        <input id="taskTimeHours" title="" type="number" min="1" max="24" onchange = "value = this.value">
 
         <b>Number of minutes worked</b>
-        <input id="taskTimeMinutes" title="" type="text" min="1" max = "60" onchange = "value = this.value">
+        <input id="taskTimeMinutes" title="" type="number" min="1" max="60" onchange = "value = this.value">
 
         <b>Number of seconds worked</b>
-        <input id="taskTimeSeconds" title="" type="text" min="1" max="60" onchange = "value = this.value">
+        <input id="taskTimeSeconds" title="" type="number" min="1" max="60" onchange = "value = this.value">
         <input id="submitTime" type="button" value="Set Time" onClick="setValues()"/>
     </form>
 
