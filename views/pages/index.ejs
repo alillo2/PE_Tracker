@@ -7,12 +7,47 @@
 </head>
 <body>
     <h1>PE Tracker</h1>
+    <form>
+    <label for="Student">Student: </label>
+    <select name="Student" id="student">
+    <% stu.forEach(function(r) {%>
+        <option value="<%= r.id %>"><%= r.name %></option>
+    <% }); %>
+    </select>
+    
+        <b>Number of hours worked</b>
+        <input id="taskTimeHours" title="" type="text" min="1" max = "24" onchange = "value = this.value">
+
+        <b>Number of minutes worked</b>
+        <input id="taskTimeMinutes" title="" type="text" min="1" max = "60" onchange = "value = this.value">
+
+        <b>Number of seconds worked</b>
+        <input id="taskTimeSeconds" title="" type="text" min="1" max="60" onchange = "value = this.value">
+        <input id="submitTime" type="button" value="Set Time" onClick="setValues()"/>
+    </form>
+
     <% tasks.forEach(function(r) {%>
         <button id='<%= r.id %>'
             onclick='javascript:logTask(<%= r.id %>);'><%= r.name %></button>
     <% }); %>
+
+    
     <script>
 let currentTaskId = null;
+
+const  setValues = async function() {
+    var student = document.getElementById("student");
+    var hours = document.getElementById("taskTimeHours");
+    var minutes = document.getElementById("taskTimeMinutes");
+    var seconds = document.getElementById("taskTimeSeconds");
+    h = hours.value.toString();
+    m = minutes.value.toString();
+    s = seconds.value.toString();
+    studentId = student.value;
+    timeString = "\'+" + h + ":" + m + ":" + s + "\'";
+
+}
+
 
 const logTask = async function(id) {
     const response = await fetch('/log', {
@@ -23,9 +58,9 @@ const logTask = async function(id) {
         },
         body: JSON.stringify({
             users_id: -1,
-            students_id: -1,
+            students_id: studentId,
             tasks_id: id,
-            duration: "'+00:00:01'"
+            duration: timeString
         })
     });
     const result = await response.json();
